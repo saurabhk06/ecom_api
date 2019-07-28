@@ -48,13 +48,13 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {    
-        $product = new Product;
+        $product = new Product();
         $product->name = $request->name;
         $product->detail = $request->description;
         $product->stock = $request->stock;
         $product->price = $request->price;
         $product->discount = $request->discount;
-
+        $product->user_id = Auth::id();
         $product->save();
 
         return response([
