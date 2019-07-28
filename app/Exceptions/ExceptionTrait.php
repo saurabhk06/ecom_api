@@ -11,7 +11,7 @@ trait ExceptionTrait
 	public function apiException($request, $e)
 	{
 		if($this->isModel($e)) {
-                    'errors' => 'Product Model not found'
+            return response()->json(['errors' => 'Product Model not found'
                 ], Response::HTTP_NOT_FOUND);
         }
 
@@ -20,6 +20,8 @@ trait ExceptionTrait
                'errors' => 'Incorrect route'
        	    ], Response::HTTP_NOT_FOUND);
         }
+
+        return parent::render($request, $e);
 	}
 
 	protected function isModel($e){
